@@ -14,8 +14,4 @@ class LatestFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_latest, container, false)
     }
-
-    companion object {
-        fun newInstance() = LatestFragment()
-    }
 }

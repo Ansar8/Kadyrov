@@ -14,8 +14,4 @@ class TopFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_top, container, false)
     }
-
-    companion object {
-        fun newInstance() = TopFragment()
-    }
 }
