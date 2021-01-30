@@ -1,15 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LatestFragment">
+    android:layout_margin="10dp"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal">
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:indeterminateDrawable="@drawable/circular_progress_bar"
+        android:indeterminateOnly="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideHorizontalBottom"/>
+
+    <LinearLayout
+        android:visibility="invisible"
+        android:id="@+id/error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="25sp"
-        android:text="@string/latest_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cloud"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/error_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#2196F3"
+            android:textAllCaps="true"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="@string/retry_btn_text" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideVerticalCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.cardview.widget.CardView
+        android:visibility="visible"
+        android:id="@+id/picture_container"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:cardElevation="@dimen/picture_elevation"
+        app:cardCornerRadius="@dimen/picture_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideHorizontalBottom">
+
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_picture"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:padding="@dimen/description_text_padding"
+            android:textSize="@dimen/description_text_size"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient"
+            android:ellipsize="end"
+            android:lines="2"
+            tools:text="@string/description_example"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideHorizontalBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <ImageButton
+        android:id="@+id/refresh_btn"
+        android:layout_width="@dimen/refresh_btn_size"
+        android:layout_height="@dimen/refresh_btn_size"
+        android:layout_margin="@dimen/btn_margin"
+        android:shadowColor="@color/black"
+        android:elevation="@dimen/btn_elevation"
+        android:background="@drawable/btn_state_list"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideVerticalCenter"
+        app:layout_constraintTop_toTopOf="@+id/guideHorizontalBottom"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/next_btn"
+        android:layout_width="@dimen/refresh_btn_size"
+        android:layout_height="@dimen/refresh_btn_size"
+        android:layout_margin="@dimen/btn_margin"
+        android:shadowColor="@color/black"
+        android:elevation="@dimen/btn_elevation"
+        android:background="@drawable/btn_state_list"
+        android:src="@drawable/ic_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideVerticalCenter"
+        app:layout_constraintTop_toTopOf="@+id/guideHorizontalBottom"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
