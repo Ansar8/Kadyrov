@@ -36,7 +36,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
         viewModel.storyInfo.observe(viewLifecycleOwner, this::showResult)
 
         if (savedInstanceState == null){
-            viewModel.loadStory()
+            viewModel.getNextStory()
         }
     }
 
@@ -46,13 +46,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
         errorMessage = view.findViewById(R.id.error_message)
 
         nextButton = view.findViewById(R.id.next_btn)
-        nextButton.setOnClickListener{ viewModel.loadStory() }
+        nextButton.setOnClickListener{ viewModel.getNextStory() }
 
         prevButton = view.findViewById(R.id.prev_btn)
-        prevButton.setOnClickListener {  }
+        prevButton.setOnClickListener { viewModel.getPrevStory() }
 
         retryButton = view.findViewById(R.id.retry_btn)
-        retryButton.setOnClickListener { viewModel.loadStory() }
+        retryButton.setOnClickListener { viewModel.getNextStory() }
 
         picture = view.findViewById(R.id.picture)
         title = view.findViewById(R.id.title)
