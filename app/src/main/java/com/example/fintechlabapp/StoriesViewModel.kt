@@ -29,8 +29,8 @@ class StoriesViewModel(private val repository: IStoryRepository): ViewModel() {
         }
         else if (nextPage < _storyList.size){
             _storyInfo.value = _storyList[nextPage]
+            _currentPage = nextPage
         }
-        _currentPage = nextPage
     }
 
     fun getPrevStory(){
@@ -48,6 +48,7 @@ class StoriesViewModel(private val repository: IStoryRepository): ViewModel() {
             val result = repository.getStory()
             if (result is Result.Success){
                 _storyList.add(result)
+                _currentPage += 1
             }
             _storyInfo.value = result
         }
