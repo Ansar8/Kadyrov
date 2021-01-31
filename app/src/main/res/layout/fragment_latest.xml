@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:layout_gravity="center"
     android:gravity="center_horizontal">
 
@@ -67,6 +66,7 @@
         android:id="@+id/picture_container"
         android:layout_height="0dp"
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         app:cardElevation="@dimen/picture_elevation"
         app:cardCornerRadius="@dimen/picture_corner_radius"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,6 +116,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideVerticalCenter"
         app:layout_constraintTop_toTopOf="@+id/guideHorizontalBottom"
+        app:layout_constraintVertical_bias="0.2"
         tools:ignore="ContentDescription" />
 
     <ImageButton
@@ -123,13 +124,14 @@
         android:layout_width="@dimen/refresh_btn_size"
         android:layout_height="@dimen/refresh_btn_size"
         android:layout_margin="@dimen/btn_margin"
-        android:shadowColor="@color/black"
-        android:elevation="@dimen/btn_elevation"
         android:background="@drawable/btn_state_list"
+        android:elevation="@dimen/btn_elevation"
+        android:shadowColor="@color/black"
         android:src="@drawable/ic_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideVerticalCenter"
         app:layout_constraintTop_toTopOf="@+id/guideHorizontalBottom"
+        app:layout_constraintVertical_bias="0.2"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

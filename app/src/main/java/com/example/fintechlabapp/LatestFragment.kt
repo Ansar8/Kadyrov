@@ -63,7 +63,6 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
             is Result.Success -> {
                 updateStory(result.data)
                 showStoryInfo(true)
-//                showProgressBar(false)
                 showErrorMessage(false)
             }
             is Result.Error -> {
