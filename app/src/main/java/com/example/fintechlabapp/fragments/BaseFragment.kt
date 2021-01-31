@@ -1,4 +1,4 @@
-package com.example.fintechlabapp
+package com.example.fintechlabapp.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -17,6 +17,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.fintechlabapp.R
+import com.example.fintechlabapp.StoriesViewModel
+import com.example.fintechlabapp.StoriesViewModelFactory
 import com.example.fintechlabapp.api.StoryResponse
 import com.example.fintechlabapp.utils.Result
 
