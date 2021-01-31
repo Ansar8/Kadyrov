@@ -22,7 +22,8 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
     private lateinit var prevButton: ImageButton
     private lateinit var nextButton: ImageButton
     private lateinit var retryButton: TextView
-    private lateinit var errorMessage: LinearLayout
+    private lateinit var errorImageView: ImageView
+    private lateinit var errorTextView: TextView
     private lateinit var pictureContainer: CardView
     private lateinit var picture: ImageView
     private lateinit var title: TextView
@@ -43,7 +44,8 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
     private fun initViews(view: View) {
         progressBar = view.findViewById(R.id.progress_bar)
         pictureContainer = view.findViewById(R.id.picture_container)
-        errorMessage = view.findViewById(R.id.error_message)
+        errorImageView = view.findViewById(R.id.error_icon)
+        errorTextView = view.findViewById(R.id.error_text)
 
         nextButton = view.findViewById(R.id.next_btn)
         nextButton.setOnClickListener{ viewModel.getNextStory() }
@@ -123,6 +125,8 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
     }
 
     private fun showErrorMessage(isVisible: Boolean) {
-        errorMessage.isVisible = isVisible
+        errorImageView.isVisible = isVisible
+        errorTextView.isVisible = isVisible
+        retryButton.isVisible = isVisible
     }
 }
