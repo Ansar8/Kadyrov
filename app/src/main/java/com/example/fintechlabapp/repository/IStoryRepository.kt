@@ -1,7 +1,7 @@
-package com.example.fintechlabapp
+package com.example.fintechlabapp.repository
 
+import com.example.fintechlabapp.Result
 import com.example.fintechlabapp.api.StoryResponse
-import retrofit2.http.Path
 
 interface IStoryRepository {
     suspend fun getRandomStory(): Result<StoryResponse>

@@ -3,6 +3,7 @@ package com.example.fintechlabapp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.fintechlabapp.api.StoriesApi
+import com.example.fintechlabapp.repository.StoryRepository
 
 class StoriesViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when (modelClass) {
