@@ -21,7 +21,7 @@ class StoriesViewModel(private val repository: IStoryRepository): ViewModel() {
     private val loadingExceptionHandler = CoroutineExceptionHandler {
         coroutineContext, exception ->
             println("CoroutineExceptionHandler got $exception in $coroutineContext")
-            _storyInfo.value = Result.Error("")
+            _storyInfo.value = Result.Error("Something went wrong when trying to load!")
     }
 
     fun getPrevStory(){
