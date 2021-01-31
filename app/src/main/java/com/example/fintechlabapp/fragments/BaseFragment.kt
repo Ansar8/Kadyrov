@@ -1,6 +1,7 @@
 package com.example.fintechlabapp.fragments
 
 import android.os.Bundle
+import android.os.Message
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -36,7 +37,9 @@ class BaseFragment : Fragment(R.layout.fragment_layout) {
     private lateinit var title: TextView
     private lateinit var type: String
 
-    private val viewModel: StoriesViewModel by viewModels { StoriesViewModelFactory() }
+    private val viewModel: StoriesViewModel by viewModels {
+        StoriesViewModelFactory(requireContext().applicationContext)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +88,7 @@ class BaseFragment : Fragment(R.layout.fragment_layout) {
             is Result.Error -> {
                 showStoryInfo(false)
                 showProgressBar(false)
-                showErrorMessage(true)
+                showErrorMessage(true, result.message)
 
             }
             is Result.Loading -> {
@@ -139,10 +142,14 @@ class BaseFragment : Fragment(R.layout.fragment_layout) {
         prevButton.isVisible = isVisible
     }
 
-    private fun showErrorMessage(isVisible: Boolean) {
+    private fun showErrorMessage(isVisible: Boolean, message: String? = null) {
         errorImageView.isVisible = isVisible
         errorTextView.isVisible = isVisible
         retryButton.isVisible = isVisible
+
+        if (isVisible && message != null){
+            errorTextView.text = message
+        }
     }
 
     companion object{

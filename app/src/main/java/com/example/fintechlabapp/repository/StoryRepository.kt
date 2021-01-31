@@ -1,12 +1,17 @@
 package com.example.fintechlabapp.repository
 
+import android.content.Context
+import com.example.fintechlabapp.R
 import com.example.fintechlabapp.utils.Result
 import com.example.fintechlabapp.api.StoriesApi
 import com.example.fintechlabapp.api.StoryResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class StoryRepository(private val storiesApi: StoriesApi): IStoryRepository {
+class StoryRepository(
+    private val context: Context,
+    private val storiesApi: StoriesApi
+): IStoryRepository {
 
     override suspend fun getRandomStory(): Result<StoryResponse> =
         withContext(Dispatchers.IO) {
@@ -15,7 +20,7 @@ class StoryRepository(private val storiesApi: StoriesApi): IStoryRepository {
                 Result.Success(response)
             }
             catch (t: Throwable) {
-                Result.Error("Oops..looks like network failure!")
+                Result.Error(context.getString(R.string.error_network_failure))
             }
         }
 
@@ -23,11 +28,16 @@ class StoryRepository(private val storiesApi: StoriesApi): IStoryRepository {
         withContext(Dispatchers.IO) {
             try {
                 val stories = storiesApi.getStories(type, page).stories
-                val response = stories.first() //TODO: replace with rundom number
-                Result.Success(response)
+                if (stories.isEmpty()){
+                    Result.Error(context.getString(R.string.error_no_content))
+                }
+                else{
+                    val response = stories.first()
+                    Result.Success(response)
+                }
             }
             catch (t: Throwable) {
-                Result.Error("Oops..looks like network failure!")
+                Result.Error(context.getString(R.string.error_network_failure))
             }
         }
 }
