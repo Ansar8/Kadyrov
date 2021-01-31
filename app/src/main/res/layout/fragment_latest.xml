@@ -23,7 +23,7 @@
 
     <LinearLayout
         android:visibility="invisible"
-        android:id="@+id/error"
+        android:id="@+id/error_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -32,7 +32,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_cloud"/>
+            android:src="@drawable/ic_cloud"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="match_parent"
@@ -76,13 +77,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/test_picture"
-            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            tools:src="@tools:sample/backgrounds/scenic"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
             android:padding="@dimen/description_text_padding"
@@ -103,7 +103,7 @@
         app:layout_constraintGuide_percent="0.85" />
 
     <ImageButton
-        android:id="@+id/refresh_btn"
+        android:id="@+id/prev_btn"
         android:layout_width="@dimen/refresh_btn_size"
         android:layout_height="@dimen/refresh_btn_size"
         android:layout_margin="@dimen/btn_margin"
