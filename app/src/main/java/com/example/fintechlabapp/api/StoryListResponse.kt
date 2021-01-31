@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class StoryListResponse(
-    @SerialName("results")
+    @SerialName("result")
     val stories: List<StoryResponse>
 )
