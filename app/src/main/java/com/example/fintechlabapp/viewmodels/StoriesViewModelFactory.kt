@@ -1,4 +1,4 @@
-package com.example.fintechlabapp
+package com.example.fintechlabapp.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
