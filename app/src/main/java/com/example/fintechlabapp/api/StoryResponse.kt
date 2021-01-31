@@ -9,5 +9,5 @@ data class StoryResponse(
     @SerialName("description")
     val title: String,
     @SerialName("gifURL")
-    val picture: String
+    val pictureUrl: String
 )
