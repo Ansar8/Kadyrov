@@ -1,4 +1,4 @@
-package com.example.fintechlabapp
+package com.example.fintechlabapp.utils
 
 sealed class Result<T>(
     val data: T? = null,

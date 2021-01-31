@@ -1,6 +1,6 @@
 package com.example.fintechlabapp.repository
 
-import com.example.fintechlabapp.Result
+import com.example.fintechlabapp.utils.Result
 import com.example.fintechlabapp.api.StoryResponse
 
 interface IStoryRepository {
