@@ -1,4 +1,4 @@
-package com.example.fintechlabapp
+package com.example.fintechlabapp.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
