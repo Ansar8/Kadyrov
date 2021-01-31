@@ -33,9 +33,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupTabLayout(){
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-//                0 -> tab.text = "Latest"
-//                1 -> tab.text = "Top"
-//                2 -> tab.text = "Hot"
                 0 -> tab.text = "Random"
                 1 -> tab.text = "Latest"
                 2 -> tab.text = "Top"

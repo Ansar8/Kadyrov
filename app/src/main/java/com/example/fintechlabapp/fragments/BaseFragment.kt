@@ -23,7 +23,7 @@ import com.example.fintechlabapp.viewmodels.StoriesViewModelFactory
 import com.example.fintechlabapp.api.StoryResponse
 import com.example.fintechlabapp.utils.Result
 
-class BaseFragment() : Fragment(R.layout.fragment_layout) {
+class BaseFragment : Fragment(R.layout.fragment_layout) {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var prevButton: ImageButton

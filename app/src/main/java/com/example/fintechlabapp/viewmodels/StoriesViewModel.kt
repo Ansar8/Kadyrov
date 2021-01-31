@@ -24,35 +24,11 @@ class StoriesViewModel(private val repository: IStoryRepository): ViewModel() {
             _storyInfo.value = Result.Error("")
     }
 
-    fun getNextStory(){
-        val nextPage = _currentPage + 1
-        if (nextPage == _storyList.size){
-            loadStory()
-        }
-        else if (nextPage < _storyList.size){
-            _storyInfo.value = _storyList[nextPage]
-            _currentPage = nextPage
-        }
-    }
-
     fun getPrevStory(){
         val prevPage = _currentPage - 1
         if (prevPage >= 0){
             _storyInfo.value = _storyList[prevPage]
             _currentPage = prevPage
-        }
-    }
-
-    private fun loadStory(){
-        viewModelScope.launch(loadingExceptionHandler) {
-            _storyInfo.value = Result.Loading()
-
-            val result = repository.getRandomStory()
-            if (result is Result.Success){
-                _storyList.add(result)
-                _currentPage += 1
-            }
-            _storyInfo.value = result
         }
     }
 
@@ -71,7 +47,11 @@ class StoriesViewModel(private val repository: IStoryRepository): ViewModel() {
         viewModelScope.launch(loadingExceptionHandler) {
             _storyInfo.value = Result.Loading()
 
-            val result = repository.getStoriesByType(type, page)
+            val result =
+                if (type == "random")
+                    { repository.getRandomStory() }
+                else
+                    { repository.getStoriesByType(type, page) }
             if (result is Result.Success){
                 _storyList.add(result)
                 _currentPage += 1
