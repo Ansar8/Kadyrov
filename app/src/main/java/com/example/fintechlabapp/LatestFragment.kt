@@ -8,7 +8,12 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.fintechlabapp.api.StoryResponse
 
 class LatestFragment : Fragment(R.layout.fragment_latest) {
@@ -58,7 +63,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
             is Result.Success -> {
                 updateStory(result.data)
                 showStoryInfo(true)
-                showProgressBar(false)
+//                showProgressBar(false)
                 showErrorMessage(false)
             }
             is Result.Error -> {
@@ -79,6 +84,28 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
         Glide.with(requireContext())
             .asGif()
             .load(story?.pictureUrl)
+            .listener(object: RequestListener<GifDrawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<GifDrawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    showProgressBar(false)
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: GifDrawable?,
+                    model: Any?,
+                    target: Target<GifDrawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    showProgressBar(false)
+                    return false
+                }
+            })
             .transition(DrawableTransitionOptions.withCrossFade(500))
             .error(R.drawable.ic_image)
             .into(picture)

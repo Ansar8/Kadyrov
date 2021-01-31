@@ -16,6 +16,7 @@
         android:indeterminateDrawable="@drawable/circular_progress_bar"
         android:indeterminateOnly="true"
         android:visibility="invisible"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
