@@ -19,7 +19,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.fintechlabapp.api.StoryResponse
 
-class BaseFragment(private val type: String) : Fragment(R.layout.fragment_layout) {
+class BaseFragment() : Fragment(R.layout.fragment_layout) {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var prevButton: ImageButton
@@ -30,8 +30,16 @@ class BaseFragment(private val type: String) : Fragment(R.layout.fragment_layout
     private lateinit var pictureContainer: CardView
     private lateinit var picture: ImageView
     private lateinit var title: TextView
+    private lateinit var type: String
 
     private val viewModel: StoriesViewModel by viewModels { StoriesViewModelFactory() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            type = it.getString(PARAM_TYPE, "latest")
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -131,5 +139,17 @@ class BaseFragment(private val type: String) : Fragment(R.layout.fragment_layout
         errorImageView.isVisible = isVisible
         errorTextView.isVisible = isVisible
         retryButton.isVisible = isVisible
+    }
+
+    companion object{
+        private const val PARAM_TYPE = "type"
+
+        fun newInstance(type: String): BaseFragment {
+            val fragment = BaseFragment()
+            val args = Bundle()
+            args.putString(PARAM_TYPE, type)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }
