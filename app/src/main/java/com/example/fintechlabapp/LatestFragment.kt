@@ -16,6 +16,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
     private lateinit var progressBar: ProgressBar
     private lateinit var prevButton: ImageButton
     private lateinit var nextButton: ImageButton
+    private lateinit var retryButton: TextView
     private lateinit var errorMessage: LinearLayout
     private lateinit var pictureContainer: CardView
     private lateinit var picture: ImageView
@@ -44,6 +45,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
 
         prevButton = view.findViewById(R.id.prev_btn)
         prevButton.setOnClickListener {  }
+
+        retryButton = view.findViewById(R.id.retry_btn)
+        retryButton.setOnClickListener { viewModel.loadStory() }
+
         picture = view.findViewById(R.id.picture)
         title = view.findViewById(R.id.title)
     }
