@@ -1,11 +1,14 @@
 package com.example.fintechlabapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -16,7 +19,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.fintechlabapp.api.StoryResponse
 
-class LatestFragment : Fragment(R.layout.fragment_latest) {
+class BaseFragment(private val type: String) : Fragment(R.layout.fragment_layout) {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var prevButton: ImageButton
@@ -37,7 +40,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
         viewModel.storyInfo.observe(viewLifecycleOwner, this::showResult)
 
         if (savedInstanceState == null){
-            viewModel.getNextStory()
+            viewModel.getNextStory(type)
         }
     }
 
@@ -48,13 +51,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
         errorTextView = view.findViewById(R.id.error_text)
 
         nextButton = view.findViewById(R.id.next_btn)
-        nextButton.setOnClickListener{ viewModel.getNextStory() }
+        nextButton.setOnClickListener{ viewModel.getNextStory(type) }
 
         prevButton = view.findViewById(R.id.prev_btn)
         prevButton.setOnClickListener { viewModel.getPrevStory() }
 
         retryButton = view.findViewById(R.id.retry_btn)
-        retryButton.setOnClickListener { viewModel.getNextStory() }
+        retryButton.setOnClickListener { viewModel.getNextStory(type) }
 
         picture = view.findViewById(R.id.picture)
         title = view.findViewById(R.id.title)
@@ -108,7 +111,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
                 }
             })
             .transition(DrawableTransitionOptions.withCrossFade(500))
-            .error(R.drawable.ic_image)
+            .error(R.drawable.ic_error)
             .into(picture)
 
         title.text = story?.title ?: ""
