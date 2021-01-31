@@ -12,7 +12,7 @@ import retrofit2.http.Path
 
 interface StoriesApi {
 
-    @GET("{type}/{page}}?json=true")
+    @GET("{type}/{page}?json=true")
     suspend fun getStories(@Path("type") type: String, @Path("page") page: Int): StoryListResponse
 
     @GET("random?json=true")
