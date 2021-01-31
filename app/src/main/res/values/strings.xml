@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">FinTechLabApp</string>
-    <string name="latest_fragment">Latest Fragment</string>
-    <string name="hot_fragment">Hot Fragment</string>
-    <string name="top_fragment">Top Fragment</string>
-    <string name="error_text">Произошла ошибка при загрузке данных. Проверьте подключение сети.</string>
+    <string name="error_network_failure">Произошла ошибка при загрузке данных. Проверьте подключение сети.</string>
     <string name="retry_btn_text">Повторить</string>
     <string name="description_example">Когда таска оказалась не такой интересной как казалось сначала.</string>
+    <string name="error_no_content">К сожалению пока нет ничего из горячего.</string>
 </resources>
