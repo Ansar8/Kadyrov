@@ -9,10 +9,10 @@ class PagerAdapter(fm: FragmentManager, lc: Lifecycle): FragmentStateAdapter(fm,
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> LatestFragment()
-            1 -> TopFragment()
-            2 -> HotFragment()
-            else -> LatestFragment()
+            0 -> BaseFragment("latest")
+            1 -> BaseFragment("top")
+            2 -> BaseFragment("hot")
+            else -> BaseFragment("latest")
         }
     }
 
